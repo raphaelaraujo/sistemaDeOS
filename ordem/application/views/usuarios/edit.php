@@ -25,30 +25,30 @@
         </a>
       </div>
       <div class="card-body">
-        <form>
+        <form method="POST" name="form_edit">
           <div class="form-group row">
             <div class="col-md-4">
               <label for="exampleInputEmail1">Nome</label>
               <input type="text" class="form-control" name="first_name" placeholder="Seu nome" value="<?php echo $usuario->first_name ?>">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <?php echo form_error('first_name', '<small class="form-text text-danger">','</small>'); ?>
             </div>
             <div class="col-md-4">
               <label for="exampleInputEmail1">Sobrenome</label>
               <input type="text" class="form-control" name="last_name" placeholder="Seu sobrenome" value="<?php echo $usuario->last_name ?>">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <?php echo form_error('last_name', '<small class="form-text text-danger">','</small>'); ?>
             </div>
             <div class="col-md-4">
               <label for="exampleInputEmail1">E-mail (Login)</label>
               <input type="email" class="form-control" name="email" placeholder="Seu e-mail" value="<?php echo $usuario->email ?>">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <?php echo form_error('email', '<small class="form-text text-danger">','</small>'); ?>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-md-4">
               <label for="exampleInputEmail1">Usuário</label>
-              <input type="email" class="form-control" name="username" placeholder="Seu usuário" value="<?php echo $usuario->username ?>">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <input type="text" class="form-control" name="username" placeholder="Seu usuário" value="<?php echo $usuario->username ?>">
+              <?php echo form_error('username', '<small class="form-text text-danger">','</small>'); ?>
             </div>
             <div class="col-md-4">
               <label>Ativo</label>
@@ -67,21 +67,21 @@
           </div>
 
           <div class="form-group row">
-            <div class="col-md-4">
-              <label for="exampleInputEmail1">Usuário</label>
-              <input type="email" class="form-control" name="username" placeholder="Seu usuário" value="<?php echo $usuario->username ?>">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <div class="col-md-6">
+              <label for="exampleInputEmail1">Senha</label>
+              <input type="password" class="form-control" name="password" placeholder="Sua senha" value="">
+              <?php echo form_error('password', '<small class="form-text text-danger">','</small>'); ?>
             </div>
-            <div class="col-md-4">
-              <label>Ativo</label>
-              <select class="form-control" name="active">
-                <option value="0" <?php echo ($usuario->active == 0 ? 'selected' : '') ?>>Não</option>
-                <option value="1" <?php echo ($usuario->active == 1 ? 'selected' : '') ?>>Sim</option>
-              </select>
+            <div class="col-md-6">
+              <label>Confirme</label>
+              <input type="password" class="form-control" name="confirm_password" placeholder="Confirme sua senha" value="">
+              <?php echo form_error('confirm_password', '<small class="form-text text-danger">','</small>'); ?>
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <input type="hidden" name="usuario_id" value="<?php echo $usuario->id?>" >
+
+          <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
         </form>
       </div>
     </div>
