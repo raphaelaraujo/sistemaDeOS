@@ -40,15 +40,15 @@ $(document).ready(function () {
     }
   }
 
-
   $('.dataTable').DataTable({
 
     'oLanguage' : DATATABLE_PTBR,
 
-    responsive = true,
+    responsive: true,
     'aoColumnDefs' : [{
         'bSortable': false,
         'aTargets': ['no-sort']
     }]
   });
+  
 });

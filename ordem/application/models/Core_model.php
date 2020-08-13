@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') or exit ('Ação não permitida')
+defined('BASEPATH') or exit ('Ação não permitida');
 
 class Core_model extends CI_Model{
 	
@@ -39,7 +39,7 @@ class Core_model extends CI_Model{
 			
 			if($get_last_id){
 				
-				$this->session->set_userdata('last_id', $this-db->insert_id());
+				$this->session->set_userdata('last_id', $this->db->insert_id());
 				
 			}
 			
@@ -74,7 +74,7 @@ class Core_model extends CI_Model{
 		
 		if($tabela && is_array($condicao)){
 			
-			$status = $this->db->delete($tabela, $condicoes);
+			$status = $this->db->delete($tabela, $condicao);
 			
 			$error = $this->db->error();
 			

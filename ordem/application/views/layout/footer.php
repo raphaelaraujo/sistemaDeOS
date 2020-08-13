@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; System Ordem <?php echo date('Y')?> &nbsp; | by YRA </span>
+            <span>Copyright &copy; System Ordem <?php echo date('Y')?> &nbsp; | by YRA Tecnologia </span>
           </div>
         </div>
       </footer>

@@ -30,10 +30,24 @@
       </div>
     <?php endif; ?>
 
+    <?php if ($message = $this->session->flashdata('sucesso')) : ?>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong><i class="fa fa-smile-wink" aria-hidden="true"> </i>
+              <?php echo $message; ?></strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    <?php endif; ?>
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <a title="Cadastrar novo usuário" href="" class="btn btn-success btn-sm float-right">
+        <a title="Cadastrar novo usuário" href="<?php echo base_url('usuarios/add')?>" class="btn btn-success btn-sm float-right">
           <i class="fas fa-user-plus">&nbsp;</i>
           Novo
         </a>
@@ -46,22 +60,24 @@
                 <th>#</th>
                 <th>Usuario</th>
                 <th>Login</th>
-                <th>Ativo</th>
+                <th class="text-center pr-3">Ativo</th>
                 <th class="text-right no-sort">Ações</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($usuarios as $user) : ?>
+
                 <tr>
                   <td><?php echo $user->id ?></td>
                   <td><?php echo $user->username ?></td>
                   <td><?php echo $user->email ?></td>
-                  <td><?php echo $user->active ?></td>
+                  <td class="text-center"><?php echo ($user->active == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm">Não</span>') ?></td>
                   <td class="text-right">
                     <a title="Editar usuário" href="<?php echo base_url('usuarios/edit/' . $user->id) ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a>
                     <a title="Excluir usuário" href="" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
                   </td>
                 </tr>
+
               <?php endforeach; ?>
             </tbody>
           </table>
