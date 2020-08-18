@@ -29,17 +29,17 @@
           <div class="form-group row">
             <div class="col-md-4">
               <label for="exampleInputEmail1">Nome</label>
-              <input type="text" class="form-control" name="first_name" placeholder="Seu nome" value="">
+              <input type="text" class="form-control" name="first_name" placeholder="Seu nome" value="<?php echo set_value('first_name'); ?>">
               <?php echo form_error('first_name', '<small class="form-text text-danger">','</small>'); ?>
             </div>
             <div class="col-md-4">
               <label for="exampleInputEmail1">Sobrenome</label>
-              <input type="text" class="form-control" name="last_name" placeholder="Seu sobrenome" value="">
+              <input type="text" class="form-control" name="last_name" placeholder="Seu sobrenome" value="<?php echo set_value('last_name'); ?>">
               <?php echo form_error('last_name', '<small class="form-text text-danger">','</small>'); ?>
             </div>
             <div class="col-md-4">
               <label for="exampleInputEmail1">E-mail (Login)</label>
-              <input type="email" class="form-control" name="email" placeholder="Seu e-mail" value="">
+              <input type="email" class="form-control" name="email" placeholder="Seu e-mail" value="<?php echo set_value('email'); ?>">
               <?php echo form_error('email', '<small class="form-text text-danger">','</small>'); ?>
             </div>
           </div>
@@ -47,7 +47,7 @@
           <div class="form-group row">
             <div class="col-md-4">
               <label for="exampleInputEmail1">Usuário</label>
-              <input type="text" class="form-control" name="username" placeholder="Seu usuário" value="">
+              <input type="text" class="form-control" name="username" placeholder="Seu usuário" value="<?php echo set_value('username'); ?>">
               <?php echo form_error('username', '<small class="form-text text-danger">','</small>'); ?>
             </div>
             <div class="col-md-4">
@@ -75,7 +75,7 @@
             <div class="col-md-6">
               <label>Confirme</label>
               <input type="password" class="form-control" name="confirm_password" placeholder="Confirme sua senha" value="">
-              
+              <?php echo form_error('confirm_password', '<small class="form-text text-danger">','</small>'); ?>
             </div>
           </div>
 
