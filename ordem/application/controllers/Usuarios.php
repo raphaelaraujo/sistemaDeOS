@@ -60,13 +60,12 @@ class Usuarios extends CI_Controller
             $group = array($this->input->post('perfil_usuario'));
 
             $additional_data = $this->security->xss_clean($additional_data);
-            
+
             $group = $this->security->xss_clean($group);
 
             if ($this->ion_auth->register($username, $password, $email, $additional_data, $group)) {
 
                 $this->session->set_flashdata('sucesso', 'Dados salvos com sucesso');
-
             } else {
 
                 $this->session->set_flasdata('error', 'Erro ao salvar os dados');
@@ -176,6 +175,27 @@ class Usuarios extends CI_Controller
                 $this->load->view('usuarios/edit');
                 $this->load->view('layout/footer');
             }
+        }
+    }
+
+    public function del($usuario_id = NULL)
+    {
+
+        if (!$usuario_id || !$this->ion_auth->user($usuario_id)->row()) {
+
+            $this->session->set_flashdata('error', 'Usuário não encontrado');
+            redirect('usuarios');
+
+        } else if($this->ion_auth->is_admin($usuario_id)){
+
+            $this->session->set_flashdata('error', 'Administrador não pode ser excluído');
+            redirect('usuarios');
+
+        } else if($this->ion_auth->delete_user($usuario_id)){
+
+            $this->session->set_flashdata('sucesso', 'Usuário excluído com sucesso');
+            redirect('usuarios');
+            
         }
     }
 
