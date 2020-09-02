@@ -45,9 +45,9 @@ class Core_model extends CI_Model{
 			
 			if($this->db->affected_rows() > 0){
 				
-				$this->session->set_flshdata('sucesso', 'Dados salvos com sucesso');
+				$this->session->set_flashdata('sucesso', 'Dados salvos com sucesso');
 			} else {
-				$this->session->set_flshdata('error', 'Erro ao salvar dados');
+				$this->session->set_flashdata('error', 'Erro ao salvar dados');
 			}
 		} else {
 			return FALSE;

@@ -42,7 +42,7 @@ class Sistema extends CI_Controller
         $this->form_validation->set_rules('sistema_numero', '', 'required|max_length[25]');
         $this->form_validation->set_rules('sistema_cidade', '', 'required|max_length[45]');
         $this->form_validation->set_rules('sistema_estado', '', 'required|max_length[2]');
-        $this->form_validation->set_rules('sistema_txt_ordem_servico', '', 'max_length[500]');
+        $this->form_validation->set_rules('sistema_txt_ordem_servico', '', 'trim|max_length[500]');
 
         
         $validou = $this->form_validation->run();

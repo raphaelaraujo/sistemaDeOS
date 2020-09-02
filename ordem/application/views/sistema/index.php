@@ -122,7 +122,9 @@
           <div class="form-group row mb-4">
             <div class="col-md-12">
               <label for="exampleInputEmail1">Texto da ordem de serviço e venda</label>
-              <textarea class="form-control form-control-sm" name="sistema_txt_ordem_servico" placeholder="Texto da ordem de serviço e venda" value="<?php echo $sistema->sistema_txt_ordem_servico ?>"></textarea>
+              <textarea class="form-control form-control-sm" name="sistema_txt_ordem_servico">
+                <?php echo $sistema->sistema_txt_ordem_servico ?>
+              </textarea>
               <?php echo form_error('sistema_txt_ordem_servico', '<small class="form-text text-danger">', '</small>'); ?>
             </div>
           </div>
