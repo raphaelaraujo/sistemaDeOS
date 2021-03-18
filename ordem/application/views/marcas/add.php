@@ -19,14 +19,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-body">
-        <form class="user" method="POST" name="form_edit">
-
-          <p>
-            <strong><i class="far fa-clock"></i>
-              Última alteração:
-            </strong>
-            <?php echo formata_data_banco_com_hora($marca->marca_data_alteracao); ?>
-          </p>
+        <form class="user" method="POST" name="form_add">
 
           <fieldset class="mt-4 border p-2 mb-3">
             <legend>
@@ -37,21 +30,19 @@
             <div class="form-group row mb-3">
               <div class="col-md-8">
                 <label for="exampleInputEmail1">Nome da marca</label>
-                <input type="text" class="form-control" name="marca_nome" placeholder="Nome da marca" value="<?php echo $marca->marca_nome; ?>">
+                <input type="text" class="form-control" name="marca_nome" placeholder="Nome da marca" value="<?php echo set_value('marca_nome'); ?>">
                 <?php echo form_error('marca_nome', '<small class="form-text text-danger">', '</small>'); ?>
               </div>
               <div class="col-md-4">
                 <label for="exampleInputEmail1">Marca ativa</label>
                 <select name="marca_ativa" class="form-control custom-select">
-                  <option value="0" <?php echo ($marca->marca_ativa == 0 ? 'selected' : '') ?>>Não</option>
-                  <option value="1" <?php echo ($marca->marca_ativa == 1 ? 'selected' : '') ?>>Sim</option>
+                  <option value="0">Não</option>
+                  <option value="1">Sim</option>
                 </select>
               </div>
             </div>
 
           </fieldset>
-
-          <input type="hidden" name="marca_id" value="<?php echo $marca->marca_id ?>">
 
           <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
           <a title="Cadastrar novo vendedor" href="<?php echo base_url($this->router->fetch_class()) ?>" class="btn btn-success btn-sm ml-2">
