@@ -81,8 +81,8 @@
                   <td class="text-center"><?php echo ($produto->produto_qtde_estoque == $produto->produto_estoque_minimo ? '<span class="badge badge-warning btn-sm text-gray-900">'.$produto->produto_qtde_estoque.'</span>' : '<span class="badge badge-info btn-sm">'.$produto->produto_qtde_estoque.'</span>')?></td>
                   <td class="text-center"><?php echo ($produto->produto_ativo == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm">Não</span>') ?></td>
                   <td class="text-right">
-                    <a title="Editar produto" href="<?php echo base_url('produtos/edit/' . $produto->produto_id) ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a>
-                    <a title="Excluir produto" href="javascript(void)" data-toggle="modal" data-target="#produto-<?php echo $produto->produto_id ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+                    <a title="Editar produto" href="<?php echo base_url('produtos/edit/' . $produto->produto_id) ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                    <a title="Excluir produto" href="javascript(void)" data-toggle="modal" data-target="#produto-<?php echo $produto->produto_id ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
 
