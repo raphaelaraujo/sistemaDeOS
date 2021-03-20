@@ -31,7 +31,7 @@
           <fieldset class="mt-4 border p-2 mb-3">
             <legend>
               <i class="fab fa-product-hunt"></i>
-              Dados do Serviço
+              Dados do Produto
             </legend>
 
             <div class="form-group row mb-3">
