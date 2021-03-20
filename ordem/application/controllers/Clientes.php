@@ -1,11 +1,10 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Clientes extends CI_Controller
-{
+class Clientes extends CI_Controller {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
 
         if (!$this->ion_auth->logged_in()) {
@@ -14,21 +13,18 @@ class Clientes extends CI_Controller
         }
     }
 
-    public function index()
-    {
+    public function index() {
 
         $data = array(
             'titulo' => 'Clientes cadastrados',
             'styles' => array(
                 'vendor/datatables/dataTables.bootstrap4.min.css'
             ),
-
             'scripts' => array(
                 'vendor/datatables/jquery.dataTables.min.js',
                 'vendor/datatables/dataTables.bootstrap4.min.js',
                 'vendor/datatables/app.js'
             ),
-
             'clientes' => $this->core_model->get_all('clientes'),
         );
 
@@ -37,8 +33,7 @@ class Clientes extends CI_Controller
         $this->load->view('layout/footer');
     }
 
-    public function add()
-    {
+    public function add() {
         $this->form_validation->set_rules('cliente_nome', '', 'trim|required|min_length[4]|max_length[45]');
         $this->form_validation->set_rules('cliente_sobrenome', '', 'trim|required|min_length[4]|max_length[150]');
         $this->form_validation->set_rules('cliente_data_nascimento', '', 'required');
@@ -75,26 +70,26 @@ class Clientes extends CI_Controller
         if ($validado) {
 
             $data = elements(
-                array(
-                    'cliente_nome',
-                    'cliente_sobrenome',
-                    'cliente_data_nascimento',
-                    'cliente_rg_ie',
-                    'cliente_email',
-                    'cliente_telefone',
-                    'cliente_celular',
-                    'cliente_endereco',
-                    'cliente_numero_endereco',
-                    'cliente_complemento',
-                    'cliente_bairro',
-                    'cliente_cep',
-                    'cliente_cidade',
-                    'cliente_estado',
-                    'cliente_ativo',
-                    'cliente_obs',
-                    'cliente_tipo',
-                ),
-                $this->input->post()
+                    array(
+                        'cliente_nome',
+                        'cliente_sobrenome',
+                        'cliente_data_nascimento',
+                        'cliente_rg_ie',
+                        'cliente_email',
+                        'cliente_telefone',
+                        'cliente_celular',
+                        'cliente_endereco',
+                        'cliente_numero_endereco',
+                        'cliente_complemento',
+                        'cliente_bairro',
+                        'cliente_cep',
+                        'cliente_cidade',
+                        'cliente_estado',
+                        'cliente_ativo',
+                        'cliente_obs',
+                        'cliente_tipo',
+                    ),
+                    $this->input->post()
             );
 
             if ($cliente_tipo == 1) {
@@ -115,7 +110,6 @@ class Clientes extends CI_Controller
             //Erro de validação
             $data = array(
                 'titulo' => 'Cadastrar cliente',
-
                 'scripts' => array(
                     'vendor/mask/jquery.mask.min.js',
                     'vendor/mask/app.js',
@@ -133,8 +127,7 @@ class Clientes extends CI_Controller
         }
     }
 
-    public function edit($cliente_id = NULL)
-    {
+    public function edit($cliente_id = NULL) {
 
         if (!$cliente_id || !$this->core_model->get_by_id('clientes', array('cliente_id' => $cliente_id))) {
             $this->session->set_flashdata('error', 'Cliente não encontrado');
@@ -175,55 +168,66 @@ class Clientes extends CI_Controller
 
             $validado = $this->form_validation->run();
             if ($validado) {
-                /*
-                [cliente_nome] => Lucio
-                [cliente_sobrenome] => Souza
-                [cliente_data_nascimento] => 1993-05-17
-                [cliente_cpf] => 419.445.410-39 //explicar
-                [cliente_rg_ie] => 22.722.469-3
-                [cliente_email] => lucio@gmail.com
-                [cliente_telefone] => (91) 9999-9999
-                [cliente_celular] => (55) 55555-5555
-                [cliente_endereco] => Rua Corra Atrás de Seus Sonhos
-                [cliente_numero_endereco] => 49
-                [cliente_complemento] => Carmelândia
-                [cliente_bairro] => Vai que Você Alcança
-                [cliente_cep] => 66690-395
-                [cliente_cidade] => Belém
-                [cliente_estado] => PA
-                [cliente_ativo] => 1
-                [cliente_obs] => Teste de Observação
-                [cliente_id] => 1
-                [cliente_tipo] => 1
-                */
+
+                $cliente_ativo = $this->input->post('cliente_ativo');
+
+                if ($this->db->table_exists('contas_receber')) {
+                    if ($cliente_ativo == 0 && $this->core_model->get_by_id('contas_receber', array('conta_receber_cliente_id' => $cliente_id, 'conta_receber_status' => 0))) {
+                        $this->session->set_flashdata('info', 'Este cliente não pode ser desativado, pois está sendo utilizado em Contas a Receber');
+                        redirect('clientes');
+                    }
+                }
+
 
                 /*
-                echo '<pre>';
-                print_r($this->input->post());
-                exit('Validado');
-                */
+                  [cliente_nome] => Lucio
+                  [cliente_sobrenome] => Souza
+                  [cliente_data_nascimento] => 1993-05-17
+                  [cliente_cpf] => 419.445.410-39 //explicar
+                  [cliente_rg_ie] => 22.722.469-3
+                  [cliente_email] => lucio@gmail.com
+                  [cliente_telefone] => (91) 9999-9999
+                  [cliente_celular] => (55) 55555-5555
+                  [cliente_endereco] => Rua Corra Atrás de Seus Sonhos
+                  [cliente_numero_endereco] => 49
+                  [cliente_complemento] => Carmelândia
+                  [cliente_bairro] => Vai que Você Alcança
+                  [cliente_cep] => 66690-395
+                  [cliente_cidade] => Belém
+                  [cliente_estado] => PA
+                  [cliente_ativo] => 1
+                  [cliente_obs] => Teste de Observação
+                  [cliente_id] => 1
+                  [cliente_tipo] => 1
+                 */
+
+                /*
+                  echo '<pre>';
+                  print_r($this->input->post());
+                  exit('Validado');
+                 */
 
                 $data = elements(
-                    array(
-                        'cliente_nome',
-                        'cliente_sobrenome',
-                        'cliente_data_nascimento',
-                        'cliente_rg_ie',
-                        'cliente_email',
-                        'cliente_telefone',
-                        'cliente_celular',
-                        'cliente_endereco',
-                        'cliente_numero_endereco',
-                        'cliente_complemento',
-                        'cliente_bairro',
-                        'cliente_cep',
-                        'cliente_cidade',
-                        'cliente_estado',
-                        'cliente_ativo',
-                        'cliente_obs',
-                        'cliente_tipo',
-                    ),
-                    $this->input->post()
+                        array(
+                            'cliente_nome',
+                            'cliente_sobrenome',
+                            'cliente_data_nascimento',
+                            'cliente_rg_ie',
+                            'cliente_email',
+                            'cliente_telefone',
+                            'cliente_celular',
+                            'cliente_endereco',
+                            'cliente_numero_endereco',
+                            'cliente_complemento',
+                            'cliente_bairro',
+                            'cliente_cep',
+                            'cliente_cidade',
+                            'cliente_estado',
+                            'cliente_ativo',
+                            'cliente_obs',
+                            'cliente_tipo',
+                        ),
+                        $this->input->post()
                 );
 
                 if ($cliente_tipo == 1) {
@@ -244,12 +248,10 @@ class Clientes extends CI_Controller
                 //Erro de validação
                 $data = array(
                     'titulo' => 'Atualizar cliente',
-
                     'scripts' => array(
                         'vendor/mask/jquery.mask.min.js',
                         'vendor/mask/app.js'
                     ),
-
                     'cliente' => $this->core_model->get_by_id('clientes', array('cliente_id' => $cliente_id)),
                 );
 
@@ -264,8 +266,7 @@ class Clientes extends CI_Controller
         }
     }
 
-    public function check_rg_ie($cliente_rg_ie)
-    {
+    public function check_rg_ie($cliente_rg_ie) {
         $cliente_id = $this->input->post('cliente_id');
 
         if ($this->core_model->get_by_id('clientes', array('cliente_rg_ie' => $cliente_rg_ie, 'cliente_id !=' => $cliente_id))) {
@@ -278,8 +279,7 @@ class Clientes extends CI_Controller
         }
     }
 
-    public function check_email($cliente_email)
-    {
+    public function check_email($cliente_email) {
         $cliente_id = $this->input->post('cliente_id');
 
         if ($this->core_model->get_by_id('clientes', array('cliente_email' => $cliente_email, 'cliente_id !=' => $cliente_id))) {
@@ -292,8 +292,7 @@ class Clientes extends CI_Controller
         }
     }
 
-    public function check_telefone($cliente_telefone)
-    {
+    public function check_telefone($cliente_telefone) {
         $cliente_id = $this->input->post('cliente_id');
 
         if ($this->core_model->get_by_id('clientes', array('cliente_telefone' => $cliente_telefone, 'cliente_id !=' => $cliente_id))) {
@@ -306,8 +305,7 @@ class Clientes extends CI_Controller
         }
     }
 
-    public function check_celular($cliente_celular)
-    {
+    public function check_celular($cliente_celular) {
         $cliente_id = $this->input->post('cliente_id');
 
         if ($this->core_model->get_by_id('clientes', array('cliente_celular' => $cliente_celular, 'cliente_id !=' => $cliente_id))) {
@@ -320,8 +318,7 @@ class Clientes extends CI_Controller
         }
     }
 
-    public function valida_cnpj($cnpj)
-    {
+    public function valida_cnpj($cnpj) {
 
         // Verifica se um número foi informado
         if (empty($cnpj)) {
@@ -353,16 +350,16 @@ class Clientes extends CI_Controller
         // Verifica se nenhuma das sequências invalidas abaixo 
         // foi digitada. Caso afirmativo, retorna falso
         else if (
-            $cnpj == '00000000000000' ||
-            $cnpj == '11111111111111' ||
-            $cnpj == '22222222222222' ||
-            $cnpj == '33333333333333' ||
-            $cnpj == '44444444444444' ||
-            $cnpj == '55555555555555' ||
-            $cnpj == '66666666666666' ||
-            $cnpj == '77777777777777' ||
-            $cnpj == '88888888888888' ||
-            $cnpj == '99999999999999'
+                $cnpj == '00000000000000' ||
+                $cnpj == '11111111111111' ||
+                $cnpj == '22222222222222' ||
+                $cnpj == '33333333333333' ||
+                $cnpj == '44444444444444' ||
+                $cnpj == '55555555555555' ||
+                $cnpj == '66666666666666' ||
+                $cnpj == '77777777777777' ||
+                $cnpj == '88888888888888' ||
+                $cnpj == '99999999999999'
         ) {
             $this->form_validation->set_message('valida_cnpj', 'Por favor digite um CNPJ válido');
             return false;
@@ -382,7 +379,6 @@ class Clientes extends CI_Controller
                 $k = $k == 1 ? 9 : $k;
 
                 //$soma2 += ($cnpj{$i} * $k);
-
                 //$soma2 = intval($soma2) + ($cnpj{$i} * $k); //Para PHP com versão < 7.4
                 $soma2 = intval($soma2) + ($cnpj[$i] * $k); //Para PHP com versão > 7.4
 
@@ -399,8 +395,8 @@ class Clientes extends CI_Controller
             $digito2 = $soma2 % 11 < 2 ? 0 : 11 - $soma2 % 11;
 
             if (!($cnpj{
-                12} == $digito1) and ($cnpj{
-                13} == $digito2)) {
+                    12} == $digito1) and ($cnpj{
+                    13} == $digito2)) {
                 $this->form_validation->set_message('valida_cnpj', 'Por favor digite um CNPJ válido');
                 return false;
             } else {
@@ -409,8 +405,7 @@ class Clientes extends CI_Controller
         }
     }
 
-    public function valida_cpf($cpf)
-    {
+    public function valida_cpf($cpf) {
 
         if ($this->input->post('cliente_id')) {
 
@@ -437,7 +432,7 @@ class Clientes extends CI_Controller
                 }
                 $d = ((10 * $d) % 11) % 10;
                 if ($cpf{
-                    $c} != $d) {
+                        $c} != $d) {
                     $this->form_validation->set_message('valida_cpf', 'Por favor digite um CPF válido');
                     return FALSE;
                 }
@@ -446,8 +441,7 @@ class Clientes extends CI_Controller
         }
     }
 
-    public function del($cliente_id = NULL)
-    {
+    public function del($cliente_id = NULL) {
         if (!$cliente_id || !$this->core_model->get_by_id('clientes', array('cliente_id' => $cliente_id))) {
             $this->session->set_flashdata('error', 'Cliente não encontrado');
             redirect('clientes');
@@ -456,6 +450,6 @@ class Clientes extends CI_Controller
             $this->session->set_flashdata('sucesso', 'Cliente excluído com sucesso');
             redirect('clientes');
         }
-        
     }
+
 }
