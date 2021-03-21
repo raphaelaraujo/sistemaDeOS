@@ -105,7 +105,7 @@
                     <i class="fas fa-hand-holding-usd"></i>
                     &nbsp;&nbsp;&nbsp;Contas a receber
                 </a>
-                <a title="Gerenciar formas de pagamentos" class="collapse-item" href="<?php echo base_url('formas_pagamentos') ?>">
+                <a title="Gerenciar formas de pagamentos" class="collapse-item" href="<?php echo base_url('modulo') ?>">
                     <i class="fas fa-money-check-alt"></i>
                     &nbsp;&nbsp;Formas de pagamento
                 </a>

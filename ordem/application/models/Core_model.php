@@ -112,4 +112,25 @@ class Core_model extends CI_Model {
         return $code;
     }
 
+    public function auto_complete_produtos($busca = null) {
+        if ($busca) {
+            $this->db->like('produto_descricao', $busca, 'both');
+            $this->db->where('produto_ativo', 1);
+            $this->db->where('produto_qtde_estoque >', 0);
+            return $this->db->get('produtos')->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function auto_complete_servicos($busca = null) {
+        if ($busca) {
+            $this->db->like('servico_descricao', $busca, 'both');
+            $this->db->where('servico_ativo', 1);
+            return $this->db->get('servicos')->result();
+        } else {
+            return false;
+        }
+    }
+
 }
