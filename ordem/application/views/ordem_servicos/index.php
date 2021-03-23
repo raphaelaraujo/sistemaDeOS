@@ -95,7 +95,7 @@
                                     <td class="text-right">
                                         <a title="Imprimir" href="<?php echo base_url('os/pdf/' . $os->ordem_servico_id) ?>" class="btn btn-sm btn-dark"><i class="fas fa-print"></i></i></a>
                                         <a title="Editar servico" href="<?php echo base_url('os/edit/' . $os->ordem_servico_id) ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a>
-                                        <a title="Excluir servico" href="javascript(void)" data-toggle="modal" data-target="#servico-<?php echo $os->ordem_servico_id ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+                                        <a title="Excluir servico" href="javascript(void)" data-toggle="modal" data-target="#os-<?php echo $os->ordem_servico_id ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
                                     </td>
                                 </tr>
 

@@ -25,6 +25,7 @@ class Ordem_servicos_model extends CI_Model {
             'ordens_servicos.*',
             'clientes.cliente_id',
             'clientes.cliente_cpf_cnpj',
+            'clientes.cliente_celular',
             'CONCAT (clientes.cliente_nome," ",clientes.cliente_sobrenome) as cliente_nome_completo',
             'formas_pagamentos.forma_pagamento_id',
             'formas_pagamentos.forma_pagamento_nome as forma_pagamento',

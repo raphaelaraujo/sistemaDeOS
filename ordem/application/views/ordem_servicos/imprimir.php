@@ -20,7 +20,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <a href="<?php echo base_url('os/pdf') ?>" class="btn btn-dark btn-icon-split btn-lg">
+                        <a href="<?php echo base_url('os/pdf/' . $ordem_servico->ordem_servico_id) ?>" class="btn btn-dark btn-icon-split btn-lg">
                             <span class="icon text-white-50">
                                 <i class="fas fa-print"></i>
                             </span>

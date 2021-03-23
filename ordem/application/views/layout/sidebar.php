@@ -30,10 +30,6 @@
                     <i class="fas fa-shopping-basket"></i>
                     &nbsp;&nbsp;&nbsp;Ordem de serviço
                 </a>
-                <a title="Gerenciar vendas" class="collapse-item" href="<?php echo base_url('vendas') ?>">
-                <i class="fas fa-shopping-cart"></i>
-                    &nbsp;&nbsp;&nbsp;Vendas
-                </a>
             </div>
         </div>
     </li>
@@ -112,22 +108,6 @@
                 <a title="Gerenciar formas de pagamentos" class="collapse-item" href="<?php echo base_url('modulo') ?>">
                     <i class="fas fa-money-check-alt"></i>
                     &nbsp;&nbsp;Formas de pagamento
-                </a>
-            </div>
-        </div>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCinco" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-search-dollar"></i>
-            <span>Relatórios</span>
-        </a>
-        <div id="collapseCinco" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Escolha uma opção:</h6>
-                <a title="Gerenciar relatório de vendas" class="collapse-item" href="<?php echo base_url('relatorios/vendas') ?>">
-                    <i class="fas fa-shopping-cart"></i>
-                    &nbsp;&nbsp;&nbsp;Vendas
                 </a>
             </div>
         </div>
