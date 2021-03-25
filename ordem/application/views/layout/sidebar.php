@@ -113,6 +113,29 @@
         </div>
     </li>
 
+    <!-- Módulo Relatórios -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-search-dollar"></i>
+            <span>Relatórios</span>
+        </a>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Escolha uma opção:</h6>
+                <a title="Gerar relatório de ordens de serviço" class="collapse-item" href="<?php echo base_url('relatorios/os') ?>">
+                    <i class="fas fa-shopping-basket"></i>
+                    &nbsp;&nbsp;&nbsp;Ordens de serviço
+                </a> 
+                <a title="Gerar relatório de contas a receber" class="collapse-item" href="<?php echo base_url('relatorios/receber') ?>">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    &nbsp;&nbsp;&nbsp;Contas a Receber
+                </a>                
+            </div>
+        </div>
+    </li>
+
+
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
