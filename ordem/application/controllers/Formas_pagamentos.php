@@ -11,6 +11,11 @@ class Formas_pagamentos extends CI_Controller {
             $this->session->set_flashdata('info', 'Sua sessão expirou!');
             redirect('login');
         }
+
+        if (!$this->ion_auth->is_admin()) {
+            $this->session->set_flashdata('info', 'Você não tem permissão para acessar o menu Formas de pagamento');
+            redirect('/');
+        }
     }
 
     public function index() {
