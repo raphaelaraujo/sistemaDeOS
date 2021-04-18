@@ -21,4 +21,10 @@ class Produtos_model extends CI_Model{
 
         return $this->db->get('produtos')->result();
     }
+
+    public function update($produto_id, $diferenca){
+        $this->db->set('produto_qtde_estoque', 'produto_qtde_estoque -' . $diferenca, FALSE);
+        $this->db->where('produto_id', $produto_id);
+        $this->db->update('produtos');
+    }
 }

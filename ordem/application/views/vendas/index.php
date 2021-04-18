@@ -64,7 +64,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a title="Cadastrar nova venda" href="<?php echo base_url('venda/add') ?>" class="btn btn-success btn-sm float-right">
+                <a title="Cadastrar nova venda" href="<?php echo base_url('vendas/add') ?>" class="btn btn-success btn-sm float-right">
                     <i class="fas fa-shopping-cart"></i>
                     Nova
                 </a>
@@ -91,9 +91,9 @@
                                     <td><?php echo $venda->forma_pagamento ?></td>
                                     <td><?php echo 'R$&nbsp;' . $venda->venda_valor_total ?></td>
                                     <td class="text-right">
-                                        <a title="Imprimir" href="<?php echo base_url('venda/pdf/' . $venda->venda_id) ?>" class="btn btn-sm btn-dark"><i class="fas fa-print"></i></i></a>
-                                        <a title="Editar servico" href="<?php echo base_url('venda/edit/' . $venda->venda_id) ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a>
-                                        <a title="Excluir servico" href="javascript(void)" data-toggle="modal" data-target="#servico-<?php echo $venda->venda_id ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+                                        <a title="Imprimir" href="<?php echo base_url('vendas/pdf/' . $venda->venda_id) ?>" class="btn btn-sm btn-dark"><i class="fas fa-print"></i></i></a>
+                                        <a title="Visualizar venda" href="<?php echo base_url('vendas/edit/' . $venda->venda_id) ?>" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                        <a title="Excluir venda" href="javascript(void)" data-toggle="modal" data-target="#venda-<?php echo $venda->venda_id ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
 
@@ -110,7 +110,7 @@
                                             <div class="modal-body">Para excluir o resgistro clique em <strong>"Sim"</strong></div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                                                <a class="btn btn-danger btn-sm" href="<?php echo base_url('venda/del/' . $venda->venda_id) ?>">Sim</a>
+                                                <a class="btn btn-danger btn-sm" href="<?php echo base_url('vendas/del/' . $venda->venda_id) ?>">Sim</a>
                                             </div>
                                         </div>
                                     </div>

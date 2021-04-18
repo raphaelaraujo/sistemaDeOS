@@ -31,13 +31,15 @@ class Vendas_model extends CI_Model
             'vendas.*',
             'clientes.cliente_id',
             'CONCAT(clientes.cliente_nome, " ", clientes.cliente_sobrenome) as cliente_nome_completo',
-            //'clientes.cliente_nome',
+            'clientes.cliente_cpf_cnpj',
+            'clientes.cliente_celular',
             'vendedores.vendedor_id',
             'vendedores.vendedor_nome_completo',
             'formas_pagamentos.forma_pagamento_id',
             'formas_pagamentos.forma_pagamento_nome as forma_pagamento',
         ]);
 
+        $this->db->where('venda_id', $venda_id);
         $this->db->join('clientes', 'cliente_id = venda_cliente_id', 'LEFT');
         $this->db->join('vendedores', 'vendedor_id = venda_vendedor_id', 'LEFT');
         $this->db->join('formas_pagamentos', 'forma_pagamento_id = venda_forma_pagamento_id', 'LEFT');
@@ -61,7 +63,7 @@ class Vendas_model extends CI_Model
         }
     }
 
-    public function delete_old_produts($venda_id = null)
+    public function delete_old_products($venda_id = null)
     {
         if ($venda_id) {
             $this->db->delete('venda_produtos', array('venda_produto_id_venda' => $venda_id));
@@ -98,7 +100,7 @@ class Vendas_model extends CI_Model
             $this->db->join('produtos', 'produto_id = venda_produto_id_produto', 'LEFT');
             $this->db->where('venda_produto_id_venda', $venda_id);
 
-            return $this->db->get('ordem_tem_servicos')->row();
+            return $this->db->get('venda_produtos')->row();
         }
     }
 }
