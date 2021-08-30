@@ -85,6 +85,7 @@ class Usuarios extends CI_Controller {
             // Erro de validação
             $data = array(
                 'titulo' => 'Cadastrar usuário',
+                'grupos' => $this->core_model->get_all('groups', array('ativo' => 0)),
             );
 
             $this->load->view('layout/header', $data);
@@ -172,6 +173,7 @@ class Usuarios extends CI_Controller {
                     'titulo' => 'Editar usuário',
                     'usuario' => $this->ion_auth->user($usuario_id)->row(),
                     'perfil_usuario' => $this->ion_auth->get_users_groups($usuario_id)->row(),
+                    'grupos' => $this->core_model->get_all('groups', array('ativo' => 0)),
                 );
 
                 $this->load->view('layout/header', $data);

@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <?php echo (isset($titulo) ? '<title> System Ordem | '. $titulo .'</title>' : '<title> System Ordem </title>'); ?>
+  <?php echo (isset($titulo) ? '<title> SGM Monobloco | '. $titulo .'</title>' : '<title> System Ordem </title>'); ?>
 
   <!-- Custom fonts for this template-->
   <link href="<?php echo base_url('public/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">

@@ -62,8 +62,9 @@
                         <div class="col-md-4">
                             <label>Perfil de acesso</label>
                             <select class="form-control" name="perfil_usuario" <?php echo (!$this->ion_auth->is_admin() ? 'disabled' : '') ?>>
-                                <option value="2" <?php echo ($perfil_usuario->id == 2 ? 'selected' : '') ?>>Vendedor</option>
-                                <option value="1" <?php echo ($perfil_usuario->id == 1 ? 'selected' : '') ?>>Administrador</option>
+                                <?php foreach ($grupos as $group) : ?> 
+                                    <option value="<?php echo $group->id ?>" <?php echo ($perfil_usuario->id == $group->id ? 'selected' : '') ?>><?php echo $group->name ?></option>                                        
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
